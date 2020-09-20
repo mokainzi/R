@@ -35,8 +35,5 @@ dice_over_threshhold <- function(dice10, dice20){
   
   cat("\n10-sided dice rolled more than", dice10_threshold, " :", dice10_over_threshold_counter)
   cat("\n20-sided dice rolled more than", dice20_threshold, ":", dice20_over_threshold_counter)
-  
-  #over_threshold = list("dice10_over_threshold_counter" = dice10_over_threshold_counter, "dice20_over_threshold_counter" = dice20_over_threshold_counter)
-  #return(over_threshold)
 }
 dice_over_threshhold(dices_rolls$dice10, dices_rolls$dice20)
