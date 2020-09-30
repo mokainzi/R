@@ -3,7 +3,6 @@ get_symbols <- function (){
   sample(weel, size = 3, replace = TRUE,
    prob = c(0.03, 0.03, 0.06, 0.1, 0.25, 0.01, 0.52))
 }
-#get_symbols
 
 score <- function (symbols) {
   # identify case
@@ -31,7 +30,6 @@ play <- function() {
   symbols <- get_symbols()
   structure(score(symbols), symbols = symbols)
 }
-#play()
 
 slot_display <- function(prize){
   
@@ -51,11 +49,12 @@ slot_display <- function(prize){
 slot_display(play())
 
 
-# simulation
+# simulate 1000,000 slot machine play
 winnings <- vector("integer", 1000000)
 Acc_winnings <- vector("integer", 1000000)
 
 for (i in 1:length(winnings)){
+  
   # how to simulate independently, without using play()?
   winnings[i] <- (play() * - 1) + 1 		# each play of the slot machine costs $1
   
@@ -76,11 +75,11 @@ hist(winnings,                                    # how to plot it better?
      main = "Histogram of Casino Porfit Simulation
      of Each Slot Machine Play
      (1000,000 Played Slot Machines)",
-     xlab = "Profit ($)",                         # do we have a better label?
-     ylab = "Frequency")                          # do we have a better label?
+     xlab = "Profit ($)",                         # better label?
+     ylab = "Frequency")                          # better label?
 hist(Acc_winnings,
      col = "lightblue",
      main = "Histogram of Casino Porfit Simulation
      (1000,000 Played Slot Machines)",
-     xlab = "Profit ($)",                         # do we have a better label?
-     ylab = "Frequency")                          # do we have a better label?
+     xlab = "Profit ($)",                         # better label?
+     ylab = "Frequency")                          # better label?
