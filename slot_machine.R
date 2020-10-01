@@ -55,7 +55,7 @@ Acc_winnings <- vector("integer", 1000000)
 
 for (i in 1:length(winnings)){
   
-  # how to simulate independently, without using play()?
+                                        # how to simulate independently, without using play()?
   winnings[i] <- (play() * - 1) + 1 		# each play of the slot machine costs $1
   
   if(i != 1){
@@ -65,7 +65,7 @@ for (i in 1:length(winnings)){
   }
 }
 
-Acc_winnings[10000000]                            # why it results to NA?
+Acc_winnings[1000000]
 sum(winnings)
 
 
