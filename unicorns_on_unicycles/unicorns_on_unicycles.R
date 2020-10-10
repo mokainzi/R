@@ -40,3 +40,24 @@ df <- observations %>%
   full_join(sales_bikes, by = c("country", "year")) %>%
   full_join(sales_total_turnover, by = c("country", "year"))
 View(df)
+
+# bar chart of average bike prices across European countries
+df %>%
+  mutate(bike_price = total_turnover/bikes) %>%
+  group_by(country) %>%
+  summarise(bike_price = mean(bike_price)) %>%
+  ggplot(aes(x = country, y = bike_price, fill = bike_price)) + 
+  geom_col()
+
+# plot to visualize the relation between unicorns and unicycles
+df %>%
+  ggplot(aes(x = pop, y = bikes, group = country, color = country)) +
+  geom_point() +
+  labs(
+    title = "Unicorns Vs. Unicycle Sales",
+    subtitle = "The more unicorns exist the more unicycles are soled in\nthe 17th century in western Europe",
+    x = "Unicorns",
+    y = "Unicycle Sales",
+    color = "Country"
+  ) + 
+  theme_bw()
