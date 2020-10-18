@@ -1,0 +1,41 @@
+``` {r include = FALSE, }
+# install.packages("lpSolve")
+library(lpSolve)
+
+
+# objective function
+f.obj <- c(13, 23, 30)
+
+# constrains
+f.con <- matrix(c(5,  15, 10,
+                  4,   4,  4,
+                  35, 20, 15,
+                  5,  10, 20), nrow = 4, byrow = TRUE)
+
+# constrains direction
+f.dir <- c("<=",
+           "<=",
+           "<=",
+           "<=")
+
+# constrains right hand side
+f.rhs <- c(480,
+           160,
+           1190,
+           650)               # 130 hrs is a month of full-time hours * 5 employees
+
+sol<-lp("max", f.obj, f.con, f.dir, f.rhs, compute.sens = TRUE)
+sol$objval
+sol$solution
+sol$duals
+```
+
+# LP Brewery Report
+
+LP Brewing Company sells kegs of two base products (Hopatronic IPA, American Kolsch Style and Barrel-Aged Dantzig) They are sold for a $13, $23 and $30 profit respectively. All three beers require Hops, Corn and Malt as their main ingredients and the company currently has the following quantities available 150 ounces of Hops, 4800 pounds of Corn, 1190 pounds of Malt and only 5 full-time employees. This is the production planning for a month of brewing.
+
+* A keg of Hopatronics IPA consumes 5 pounds of Corn, 4 ounces of Hops, 35 pounds of Malt and 5 hours of labor to make
+* A keg of the American Kolsch consumes 15 pounds of Corn, 4 ounces of Hops, 20 pounds of Malt and 10 hours of labor to make
+* A keg of the Barrel-Aged Dantzig consumes 10 pounds of Corn, 4 ounces of Hops, 15 pounds of Malt and 20 hours of labor to make
+
+The optimal amount of each beer that must be produced to maximize profit is `r sol$solution[1]` Hopatronic IPA, `r sol$solution[2]` American Kolsch Style and `r sol$solution[3]` Barrel-Aged Dantzig. These amounts yield maximum profit of $`r sol$objval` a month.
